@@ -1,6 +1,7 @@
 # ODT_TomoGAN
 
 Official implementation of the paper ***"Complete Removal of Missing Cone Artifacts in ODT using Unsupervised Deep Learning"***.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4434355.svg)](https://doi.org/10.5281/zenodo.4434355)
 
 ### Downloading source data
 
