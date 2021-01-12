@@ -85,7 +85,7 @@ if __name__ == '__main__':
     settings = dict(
         # Variables that almost never change.
         name='test',
-        data_root='/media/harry/mri/ODT_conventional_tomo_db',
+        data_root='./dataset/microbead',
         specimen_type='20180726.150404.579.SiO2_5um-001',
         log_root='./logs',
         ckpt_root='./checkpoints',

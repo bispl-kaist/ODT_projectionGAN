@@ -1,0 +1,10 @@
+# Do not upload large volumetric files
+
+/logs
+
+/recons_vol
+
+/recons
+
+/GP_recon
+

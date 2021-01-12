@@ -85,8 +85,8 @@ if __name__ == '__main__':
     settings = dict(
         # Variables that almost never change.
         name='test',
-        data_root='/media/harry/mri1/backup/ODT/data/TomoGAN_db_infer_multiball',
-        specimen_num='all',
+        data_root='./dataset/phantom',
+        specimen_num=1,
         log_root='./logs/test/',
         ckpt_root='./checkpoints/test/',
         batch_size=1,

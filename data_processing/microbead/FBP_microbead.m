@@ -1,8 +1,8 @@
 clear; clc;
 
-addpath('./lib_util');
-addpath('./lib_optim');
+restoredefaultpath();
 addpath('./utils');
+addpath('./tomo_func');
 
 %% System parameters
 % %% Parameter Setting
@@ -35,29 +35,23 @@ ATA             = @(x) AT(A(x));
 
 %% Load data, and apply projection
 
-root_input = './ODT_DATA_gp/20181120_NIH3T3_LipidDroplet(PM)_0.313.30/20180726.150404.579.SiO2_5um-001/';
-root_recon = '/media/harry/ExtDrive/ODT_conventional_tomo/results/';
-method = 'tomo_patch128_g5_0805_bead/';
-root_recon = [root_recon method];
+root_input = '../../GP_recon/microbead/';
+root_recon = '../../recons/microbead/';
 root_recon_axi = [root_recon 'recon_microbead_axi/Input_microbead_axi/'];
 root_recon_cor = [root_recon 'recon_microbead_cor/Input_microbead_axi/'];
 root_recon_sag = [root_recon 'recon_microbead_sag/Input_microbead_axi/'];
-root_save = '/media/harry/mri1/backup/ODT_conventional_tomo_db/results_3axis/';
-mkdir(root_save);
-root_save = [root_save method];
+root_save = '../../recons_vol/microbead/';
 mkdir(root_save);
 
-dir_microbead = 'microbead/';
-
-root_save = [root_save dir_microbead];
-mkdir(root_save);
+sname = '20180726.150404.579.SiO2_5um-001/';
+root_input = [root_input sname];
 
 % Load Input data
-disp('loading input dta');
+disp('loading input data');
 load([root_input 'RI_NN'], 'RI_tomogram');
 gp_tomo = RI_tomogram;
 gp_tomo = permute(abs(gp_tomo), [3 1 2]);
-[norm_gp_tomo, maxv, minv] = normalize_im(gp_tomo);
+[norm_gp_tomo, maxv, minv] = normalize_im_verbose(gp_tomo);
 
 recons_tomo = zeros(372, 372, 372);
 % Axial Recon data FBP

@@ -674,7 +674,7 @@ class ODT_data_phantom_infer(Dataset):
             for i in range(1, len(self.ball_idx)):
                 input_files += list(root.glob(f'Input/{self.ball_idx[i]}/*.mat'))
         else:
-            input_files = list(root.glob(f'Input/{specimen_num}/*.mat'))
+            input_files = list(root.glob(f'{str(specimen_num).zfill(3)}/*.mat'))
 
         if not input_files:  # If the list is empty for any reason
             raise FileNotFoundError('Sorry! No input files present in this directory. '

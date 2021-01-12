@@ -1,8 +1,8 @@
 clear; clc;
 
-addpath('./lib_util');
-addpath('./lib_optim');
+restoredefaultpath();
 addpath('./utils');
+addpath('./tomo_func');
 
 %% System parameters
 % %% Parameter Setting
@@ -36,12 +36,11 @@ ATA             = @(x) AT(A(x));
 
 %% Load data, and apply projection
 
-root = './ODT_data_0730/';
-root_save = '/media/harry/mri1/backup/ODT_conventional_tomo_db/';
+root = '../../GP_recon/microbead/';
+root_save = '../../dataset/microbead2/';
 root_save_input_axi = [root_save 'Input_microbead_axi/'];
 root_save_input_sag = [root_save 'Input_microbead_sag/'];
 root_save_input_cor = [root_save 'Input_micobead_cor/'];
-root_save_label = [root_save 'Label_microbead/'];
 
 outer_dir = dir(root);
 
@@ -58,7 +57,7 @@ mkdir(root_save_input_cor_s);
 
 load([root_s 'RI_NN'], 'RI_tomogram');
 gp_tomo = abs(RI_tomogram);
-[norm_gp_tomo, maxv, minv] = normalize_im(gp_tomo);
+[norm_gp_tomo, maxv, minv] = normalize_im_verbose(gp_tomo);
 
 % projection [1 2 3]
 gp_proj = A(norm_gp_tomo);

@@ -85,7 +85,7 @@ if __name__ == '__main__':
     settings = dict(
         # Variables that almost never change.
         name='test',
-        data_root='/media/harry/fastmri/ODT_conventional_tomo_inference_db',
+        data_root='./dataset/bio',
         specimen_type='20181120_NIH3T3_LipidDroplet(PM)_0.313.30',
         specimen_fname='20181120.190011.239.Default-092',
         log_root='./logs',

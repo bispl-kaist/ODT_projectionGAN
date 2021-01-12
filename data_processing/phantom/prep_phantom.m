@@ -1,18 +1,16 @@
 clear; clc;
-root = '../data/ODT_phantoms_multiball/';
-addpath('utils');
-addpath('lib_util');
-addpath('lib_optim');
-addpath('tomo_func');
 
-label_root      = [root 'label/'];
-label_dir       = dir(label_root);
-label_dir       = label_dir(3:end);
-gp_root         = [root 'gp/'];
-gp_dir          = dir(gp_root);
-gp_dir          = gp_dir(3:end);
+restoredefaultpath();
+addpath('./utils');
+addpath('./tomo_func');
 
-I_save_dir      = '../data/TomoGAN_db_infer_multiball/Input/';
+
+%%
+
+clear; clc;
+root = '../../GP_recon/phantom/';
+snum   = 1;
+I_save_dir      = ['../../dataset/phantom/' sprintf('%03d',snum) '/']; mkdir(I_save_dir);
 
 %% System parameters
 % %% Parameter Setting
@@ -43,22 +41,14 @@ AT              = @(y) BackProjection(y, param)/(pi/(2*nNumView));
 AINV            = @(y) BackProjection(Filtering(y, param), param);
 ATA             = @(x) AT(A(x));
 
-
 %%
 
-for i = 8:length(gp_dir)
-    disp(i);
-    load([gp_root gp_dir(i).name], 'RI_tomogram');
-    I_save_diri = [I_save_dir sprintf('%03d',i) '/'];
-    mkdir(I_save_diri);
-    load([gp_root gp_dir(i).name], 'RI_tomogram');
-    gp_tomo = abs(RI_tomogram); Gmax = max(gp_tomo(:)); Gmin = min(gp_tomo(:));
-    
-    gp_tomo             = normalize_im(gp_tomo);
-    gp_proj             = A(permute(gp_tomo, [2 3 1]));
-    
-    for a = 1:360
-        input = squeeze(gp_proj(:,:,a));
-        save([I_save_diri 'p' int2str(i) '_ang' int2str(a)], 'input');
-    end
+load([root sprintf('phantom_%03d',snum)], 'RI_tomogram');
+gp_tomo = abs(RI_tomogram); Gmax = max(gp_tomo(:)); Gmin = min(gp_tomo(:));
+gp_tomo             = normalize_im(gp_tomo);
+gp_proj             = A(permute(gp_tomo, [2 3 1]));
+
+for a = 1:360
+    input = squeeze(gp_proj(:,:,a));
+    save([I_save_dir 'p1_ang' int2str(a)], 'input');
 end
