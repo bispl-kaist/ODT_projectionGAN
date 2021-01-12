@@ -25,9 +25,9 @@ MATLAB codes were tested with ```MATLAB R2019a```. Be sure to pre-compile CUDA f
 
 Before performing TomoGAN reconstruction, you first have to download ODT data reconstructed with GP algorithm [download link](https://www.dropbox.com/sh/yiitrugxdo6101c/AACcNavEc2Q_KUJGEAinwE1oa?dl=0). The downloaded data should be placed in the folder ```./GP_recon```. Reconstruction steps are performed in the following order
 
-1. ```prep_{bio, microbead, phantom}.m```
+1. ```./data_processing/{biological cell, microbead, phantom}/prep_{bio, microbead, phantom}.m```
 2. ```python Infer_{bio, microbead, phantom}.py```
-3. ```FBP_{bio, microbead, phantom}.m```
+3. ```./data_processing/{biological cell, microbead, phantom}/FBP_{bio, microbead, phantom}.m```
 
 Optionally, before FBP, you can visualize the enhanced projections with ```visualize_{bio, microbead, phantom}.m```
 
