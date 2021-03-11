@@ -1,4 +1,4 @@
-# ODT_TomoGAN
+# ODT_projectionGAN
 
 Official implementation of the paper ***"Complete Removal of Missing Cone Artifacts in ODT using Unsupervised Deep Learning"***.
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4434355.svg)](https://doi.org/10.5281/zenodo.4434355)
@@ -23,7 +23,7 @@ MATLAB codes were tested with ```MATLAB R2019a```. Be sure to pre-compile CUDA f
 
 ### Inference
 
-Before performing TomoGAN reconstruction, you first have to download ODT data reconstructed with GP algorithm [download link](https://www.dropbox.com/sh/yiitrugxdo6101c/AACcNavEc2Q_KUJGEAinwE1oa?dl=0). The downloaded data should be placed in the folder ```./GP_recon```. Reconstruction steps are performed in the following order
+Before performing projectionGAN reconstruction, you first have to download ODT data reconstructed with GP algorithm [download link](https://www.dropbox.com/sh/yiitrugxdo6101c/AACcNavEc2Q_KUJGEAinwE1oa?dl=0). The downloaded data should be placed in the folder ```./GP_recon```. Reconstruction steps are performed in the following order
 
 1. ```./data_processing/{biological cell, microbead, phantom}/prep_{bio, microbead, phantom}.m```
 2. ```python Infer_{bio, microbead, phantom}.py```
